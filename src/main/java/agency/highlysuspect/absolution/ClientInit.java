@@ -26,7 +26,7 @@ public class ClientInit implements ClientModInitializer {
 	public static Vec3d fudgeLookVec(Vec3d in) {
 		//TODO This is the wrong approach.
 		// It works ok for small angles, but it basically maps X motion directly to yaw and Y motion directly to pitch.
-		// That's not true, you have to change both pitch *and* yaw to point the camera at the thing on the left-center of your screen.
+		// That's not true, you have to change both pitch *and* yaw to point the camera at the thing on the left-center of your screen if you're not looking at the horizon.
 		// oof
 		// Also, it is based on the false assumption that i could add directly to the X and Y components of the look vector.
 		// That is not how look vectors work at all lol. I wrote this without looking at Entity#getRotationVec (which does some trig)
@@ -70,7 +70,7 @@ public class ClientInit implements ClientModInitializer {
 		
 		///uhh idk based on internals of getrotationvec
 		
-		Vec3d funny = fudgeLookVec(new Vec3d(0, 0, 0)); //lmao 0, 0 nice
+		Vec3d funny = fudgeLookVec(new Vec3d(0, 0, 0)); //sorry
 		//JUST FLIP THE SIGNS AROUND UNTIL SHIT WORKS
 		double f = (receiver.getPitch(tickDelta) + funny.y) * 0.017453292d;
 		double g = (-receiver.getYaw(tickDelta) - funny.x) * 0.017453292d;

@@ -9,7 +9,6 @@ import net.minecraft.client.render.BufferBuilder;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.VertexFormats;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.math.MathHelper;
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -46,6 +45,8 @@ public class InGameHudMixin {
 		//(if i ever bind a texture, remember to bind it back for bossbars btw)
 		
 		//Draw the circle while we're at it. Blend mode's already set up
+		//TODO: Narrator: The blend mode was not already set up (try f1, f3, f5)
+		//TODO it doesn't honor the scaledPixels setting yet either
 		RenderSystem.disableTexture();
 		RenderSystem.pushMatrix();
 		RenderSystem.translated(scaledWidth / 2d, scaledHeight / 2d, 0);
